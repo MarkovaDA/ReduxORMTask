@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { getEmployees, getEmployeeInfoById } from './selectors/EmployeeSelector';
+import { selectEmployee } from './actions/selectEmployeeAction';
 
 class App extends Component {
-	componentWillReceiveProps(props) {
-		console.log(props.state);
+
+	componentDidMount() {
+		console.log(this.props.selectedEmployee, this.props.employees);
 	}
 
 	render() {
 		return (
-		  <h1>Hello world</h1>
+			<div>
+		  	<h1>Hello world</h1>
+			</div>
 		);
 	}
 }
 
 export default connect (
   state => ({
-		state: state
+		employees: getEmployees(state.orm),
+		selectedEmployee: getEmployeeInfoById(state.orm, 6)
 	}),
-  dispatch => ({})
+  dispatch => ({
+		showInfoByEmployeeId: (employeeId) => {
+			dispatch(selectEmployee(employeeId));
+		}
+	})
 )(App);

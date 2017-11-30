@@ -7,7 +7,16 @@ import { Position} from './Position';
 
 const ValidatingModel = propTypesMixin(Model);
 //сотрудник
-export class Employee extends ValidatingModel {}
+export class Employee extends ValidatingModel {
+  static reducer(state, action, Employee, session) {
+    const { type } = action;
+    switch(type) {
+      case 'ADD_EMPLOYEE':
+        //написать селектор для выбора пользователей
+        break;
+    }
+  };
+}
 Employee.modelName = 'Employee';
 
 Employee.fields = {

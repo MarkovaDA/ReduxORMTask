@@ -1,4 +1,4 @@
-export const  bootstrap = (schema) => {
+export const  bootstrapInitialState = (schema) => {
   //тестовые данные для работы системы
   const state = schema.getEmptyState();
 
@@ -144,6 +144,7 @@ export const  bootstrap = (schema) => {
     //console.log(employee.skills.toRefArray());
   });
 
+  //console.log('bootstrapInitialState',session.Employee.withId(0).ref);
   return {
     orm: state,
     app: {}

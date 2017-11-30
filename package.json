@@ -14,7 +14,8 @@
     "redux-orm-proptypes": "^0.1.0",
     "redux-thunk": "^2.2.0",
     "serializerr": "^1.0.3",
-    "ws": "^3.2.0"
+    "ws": "^3.2.0",
+    "reselect": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

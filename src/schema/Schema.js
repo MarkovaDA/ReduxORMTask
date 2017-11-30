@@ -5,5 +5,6 @@ import { Estimate } from '../models/Estimate';
 import { Skill } from '../models/Skill';
 import { Employee } from '../models/Employee';
 
+//отличие здесь
 export const schema = new ORM();
 schema.register(Category, Position, Estimate, Skill, Employee);

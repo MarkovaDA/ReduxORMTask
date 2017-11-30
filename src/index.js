@@ -4,10 +4,8 @@ import App from './App';
 import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
 import { schema } from './schema/Schema';
-import { bootstrap } from './bootstrap';
-import {createReducer } from 'redux-orm';
+import { bootstrapInitialState } from './bootstrap';
 import { rootReducer } from './reducers/rootReducer';
 
 const reducer = combineReducers({
@@ -17,10 +15,7 @@ const reducer = combineReducers({
 
 const createStoreWithMiddleWare = applyMiddleware(createLogger)(createStore);
 
-const store = createStoreWithMiddleWare(reducer, {
-  orm: bootstrap(schema),
-  app: {}
-});
+const store = createStoreWithMiddleWare(reducer, bootstrapInitialState(schema));
 
 /*let store = createStore(
   reducer,

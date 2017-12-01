@@ -4,6 +4,8 @@ import { getEmployees, getEmployeeInfoById } from './selectors/EmployeeSelector'
 import { selectEmployee } from './actions/selectEmployeeAction';
 import  { addEmployee } from './actions/addEmployeeAction';
 
+import { Grid, Cell, Card } from 'react-mdl';
+
 class App extends Component {
 
 	componentDidMount() {
@@ -17,9 +19,25 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-		  	<h1>Hello world</h1>
-        <button onClick={this.props.addNewEmployee}>добавить</button>
+			<div className='wrapper-section'>
+				<Grid className="search-section">
+					<Cell col={12}>
+					</Cell>
+				</Grid>
+				<Grid noSpacing>
+					<Cell col={6}  className='list-section'>
+						<h1>Hello world</h1>
+						<button onClick={this.props.addNewEmployee}>добавить</button>
+					</Cell>
+					<Cell col={6} >
+						<Grid noSpacing>
+							<Cell col={12} className='info-section'></Cell>
+						</Grid>
+						<Grid noSpacing>
+							<Cell col={12} className='add-employee-section'></Cell>
+						</Grid>
+					</Cell>
+				</Grid>
 			</div>
 		);
 	}

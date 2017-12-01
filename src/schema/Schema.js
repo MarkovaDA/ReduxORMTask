@@ -7,3 +7,4 @@ import { Employee } from '../models/Employee';
 
 export const schema = new ORM();
 schema.register(Category, Position, Estimate, Skill, Employee);
+

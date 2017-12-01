@@ -4,12 +4,18 @@ import App from './App';
 import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createReducer } from 'redux-orm';
 import { schema } from './schema/Schema';
 import { bootstrapInitialState } from './bootstrap';
 import { rootReducer } from './reducers/rootReducer';
 
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
+import './styles/AppStyle.css';
+
 const reducer = combineReducers({
-  orm: schema.reducer(),
+  /*orm: schema.reducer(),*/
+  orm: createReducer(schema),
   app: rootReducer
 });
 

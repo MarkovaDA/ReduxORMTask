@@ -2,9 +2,11 @@ import { Model, attr } from 'redux-orm';
 import propTypesMixin from 'redux-orm-proptypes';
 import PropTypes from 'prop-types';
 
-const ValidatingModel = propTypesMixin(Model);
+//const ValidatingModel = propTypesMixin(Model);
 //оценка (уровень)
-export class Estimate extends ValidatingModel {}
+export class Estimate extends Model {
+
+}
 Estimate.modelName = 'Estimate';
 
 Estimate.fields = {

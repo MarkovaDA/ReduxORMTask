@@ -3,10 +3,12 @@ import propTypesMixin from 'redux-orm-proptypes';
 import PropTypes from 'prop-types';
 
 
-const ValidatingModel = propTypesMixin(Model);
+//const ValidatingModel = propTypesMixin(Model);
 
 //должность
-export class Position extends ValidatingModel {}
+export class Position extends Model {
+
+}
 Position.modelName = 'Position';
 
 Position.fields = {

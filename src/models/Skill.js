@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 import { Estimate } from './Estimate';
 import { Category } from './Category';
 
-const ValidatingModel = propTypesMixin(Model);
+//const ValidatingModel = propTypesMixin(Model);
 //навык
-export class Skill extends ValidatingModel {}
+export class Skill extends Model {
+
+}
 Skill.modelName = 'Skill';
 
 Skill.fields = {

@@ -2,7 +2,8 @@ export const  bootstrapInitialState = (schema) => {
   //тестовые данные для работы системы
   const state = schema.getEmptyState();
 
-  const session = schema.withMutations(state);
+  const session = //schema.withMutations(state);
+  schema.mutableSession(state);
 
   const { Category, Employee, Estimate, Position, Skill} = session;
 

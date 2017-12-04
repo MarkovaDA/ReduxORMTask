@@ -8,9 +8,8 @@ import { createReducer } from 'redux-orm';
 import { schema } from './schema/Schema';
 import { bootstrapInitialState } from './bootstrap';
 import { rootReducer } from './reducers/rootReducer';
+import 'semantic-ui-css/semantic.min.css';
 
-import 'react-mdl/extra/material.css';
-import 'react-mdl/extra/material.js';
 import './styles/AppStyle.css';
 
 const reducer = combineReducers({

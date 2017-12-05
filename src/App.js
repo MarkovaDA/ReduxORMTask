@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getEmployees, getEmployeeInfoById } from './selectors/EmployeeSelector';
-import { selectEmployee } from './actions/selectEmployeeAction';
+import { getEmployees, getEmployeeInfoById, filterEmployeesByPosition, filterEmployeesBySkill } from './selectors/EmployeeSelector';
 import  { addEmployee } from './actions/addEmployeeAction';
+import { selectEmployee} from './actions/selectEmployeeAction';
 import FilterPanel from './components/FilterPanel';
 import EmployeeList from './components/EmployeeList';
 import PersonalCard from './components/PersonalCard';
@@ -10,19 +10,23 @@ import AddEmployee from './components/AddEmployee';
 
 class App extends Component {
 
+  onSelectEmployee = (employee) => {
+    this.props.switchEmployeeId(employee.id);
+  };
+
+  componentDidMount() {
+  	//console.log('FILTERED', this.props.filtered);
+	}
+
 	render() {
-		//только этот компонент будет соединняться с редаксом и передавать данные остальным компонентам
-		//1 Следующая задача - отображение лично карты
 		return (
 			<div>
 				<FilterPanel />
 				<div className ='wrapper'>
 					<div className='body'>
-
-							<EmployeeList employees = {this.props.employees} />
-
+							<EmployeeList employees = {this.props.employees} onSelectEmployee = {this.onSelectEmployee}/>
 							<div className='right-column'>
-								<PersonalCard />
+								<PersonalCard employeeInfo = {this.props.employeeInfo}/>
 								<AddEmployee />
 							</div>
 					</div>
@@ -35,14 +39,12 @@ class App extends Component {
 export default connect (
   state => ({
 		employees: getEmployees(state),
-		selectedEmployee: getEmployeeInfoById(state)(5)
+		filtered: filterEmployeesBySkill(state)('c++'),//некорректен в работе этот фильтр
+		employeeInfo:	getEmployeeInfoById(state)(state.app.employeeId)
 	}),
   dispatch => ({
-    addNewEmployee: () => {
-      dispatch(addEmployee())
-    }
-		/*showInfoByEmployeeId: (employeeId) => {
+		switchEmployeeId: (employeeId) => {
 			dispatch(selectEmployee(employeeId));
-		}*/
+		}
 	})
 )(App);

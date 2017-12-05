@@ -36,7 +36,8 @@ body {
 }
 .info-employee {
     width: 100%;
-    min-height: 300px;
+    height: 250px;
+    overflow-y: scroll;
     background: greenyellow;
 }
 .add-employee {

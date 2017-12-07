@@ -17,16 +17,15 @@ const employeeSortComparator = (employee1, employee2) => {
 
 //фильтрация по должностям
 const employeesByPositionSelector = (session, pattern) => {
-  console.log('FILTER BY POSITION:', pattern);
-  return session.Employee.all().toModelArray().filter((employee) => {
+  const entities =  session.Employee.all().toModelArray().filter((employee) => {
     const { positions } = employee;
-    return !isEmpty(positions.filter(item => item.title.toLowerCase().includes(pattern.toLowerCase())))
-  })
-  .map(employee => {
-      console.log(employee.positions.toRefArray());
-      return Object.assign({}, employee.ref)
-    }
-  );
+    return !isEmpty(positions.toRefArray().filter(item => item.title.toLowerCase().includes(pattern.toLowerCase())))
+  });
+  //возвращаем  lazy-объект без лишних свойств фреймворка orm
+  entities.map(employee => {
+    return Object.assign({}, employee.ref)
+  });
+  return entities;
 };
 
 //фильтрация сотрудника по имени
@@ -36,16 +35,19 @@ const employeesByNameSelector = (session, pattern) => {
   });
 };
 
+//фильтрация по навыкам
 const employeesBySkillSelector = (session, pattern) => {
-  return session.Employee.all().toModelArray().filter((employee) => {
-    const skills = employee.skills.toModelArray();
-    skills.filter((skill) => {
+
+  const entities =  session.Employee.all().toModelArray().filter((employee) => {
+    let { skills } = employee;
+    skills = skills.toModelArray().filter((skill) => {
       const { category } = skill;
-      return category.title.toLowerCase().includes(pattern.toLowerCase());
+      return category.ref.title.toLowerCase().includes(pattern.toLowerCase());
     });
     return !isEmpty(skills);
-  })
-  .map(employee => Object.assign({}, employee.ref));
+  });
+
+  return entities.map(employee => Object.assign({}, employee.ref));
 };
 
 const transformations = [

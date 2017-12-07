@@ -18,7 +18,13 @@ class FilterPanel extends Component {
     });
   };
 
-  search = () => {
+  onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.onSearchClick();
+    }
+  };
+
+  onSearchClick = () => {
     const { filterId, searchPattern } = this.state;
     this.props.notifyFilter(filterId, searchPattern);
   };
@@ -38,9 +44,9 @@ class FilterPanel extends Component {
       <div className='header'>
         <Segment textAlign='right' className='secondary raised segment'>
           <Dropdown text={this.state.filterText} pointing='top right' icon={'filter'} options={this.state.options} onChange={this.onSelectFilter} />
-          <Input icon='search' placeholder='поиск...' onChange = {this.onPatternChange} />
+          <Input icon='search' placeholder='поиск...' onChange = {this.onPatternChange} onKeyPress={this.onKeyPress } />
           <Button style={{marginLeft: '10px'}} size={'tiny'} primary
-                  onClick={this.search}>
+                  onClick={this.onSearchClick}>
                   найти
           </Button>
         </Segment>

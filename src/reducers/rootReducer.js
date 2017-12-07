@@ -1,20 +1,18 @@
 
 export const rootReducer = (state = {}, action) => {
   const {type, payload} = action;
-
-  if (type === 'SELECT_EMPLOYEE') {
-    /*return  Object.assign(state, {
-      employeeId: payload
-    });*/
-    return {employeeId: payload};
+  switch(type) {
+    case 'SELECT_EMPLOYEE':
+      return  Object.assign({}, state, {
+        employeeId: payload
+      });
+    case 'SELECT_FILTER':
+      const {filterId, pattern} = payload;
+      return  Object.assign({}, state, {
+        filterId: filterId,
+        pattern: pattern
+      });
+    default:
+      return state;
   }
-  if (type == 'SELECT_FILTER') {
-    const {filterId, pattern} = payload;
-    //внести action & pattern
-    /*return  Object.assign(state, {
-      filterId: payload
-    });*/
-    return { filterId: filterId, pattern: pattern};
-  }
-  return state;
 };

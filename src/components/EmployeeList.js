@@ -12,7 +12,7 @@ class EmployeeList extends Component {
     );
 
     return (
-      <Segment className='list-employee blue'>
+      <Segment className='list-employee'>
         <label>Список сотрудников</label>
         <List divided relaxed animated>
           { employees }

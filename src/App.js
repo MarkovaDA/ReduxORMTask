@@ -14,14 +14,18 @@ class App extends Component {
     this.props.switchEmployeeId(employee.id);
   };
 
+  onFilterEmployees = (filterId) => {
+    console.log('ON FILTER EMPLOYEES', filterId);
+    //this.props.filterEmployee
+  };
+
   componentDidMount() {
-  	//console.log('FILTERED', this.props.filtered);
 	}
 
 	render() {
 		return (
 			<div>
-				<FilterPanel />
+				<FilterPanel notifyFilter = {this.onFilterEmployees} />
 				<div className ='wrapper'>
 					<div className='body'>
 							<EmployeeList employees = {this.props.employees} onSelectEmployee = {this.onSelectEmployee}/>

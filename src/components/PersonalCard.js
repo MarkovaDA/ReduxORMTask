@@ -10,7 +10,7 @@ class PersonalCard extends Component {
     }
 
     return (
-      <List as='ul'>
+      <List as='ul' style={{height: '90%', overflowY: 'scroll'}}>
         <List.Item as='li'><b>Занимаемые должности</b></List.Item>
         <List.Item style={{marginLeft: '20px'}}>
           <List as='ol'>
@@ -40,7 +40,7 @@ class PersonalCard extends Component {
   render() {
     const card = this.buildCard(this.props.employeeInfo);
     return(
-      <Segment className='info-employee blue'>
+      <Segment className='info-employee'>
         <label>Личная карта сотрудника</label>
         {card}
       </Segment>

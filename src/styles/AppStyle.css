@@ -37,7 +37,6 @@ body {
 .info-employee {
     width: 100%;
     height: 250px;
-    overflow-y: scroll;
     background: greenyellow;
 }
 .add-employee {
@@ -50,10 +49,7 @@ body {
     font-size: 1.2em;
     text-align: center;
 }
-.filterIcon {
-    color: #0f93ff !important;
-}
 label {
     color: #0f93ff;
-    font-weight: bold;
+    font-size: 1.2em;
 }

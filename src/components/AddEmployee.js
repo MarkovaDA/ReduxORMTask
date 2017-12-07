@@ -5,7 +5,7 @@ class AddEmployee extends Component {
 
   render() {
     return(
-      <Segment className='add-employee blue'>
+      <Segment className='add-employee'>
         <label>Добавить сотрудника</label>
       </Segment>
     );

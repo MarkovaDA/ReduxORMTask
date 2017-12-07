@@ -22,11 +22,6 @@ const createStoreWithMiddleWare = applyMiddleware(createLogger)(createStore);
 
 const store = createStoreWithMiddleWare(reducer, bootstrapInitialState(schema));
 
-/*let store = createStore(
-  reducer,
-  applyMiddleware(thunk)
-);*/
-
 ReactDOM.render(
   (<Provider store = {store}>
     <App />

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getEmployees, getEmployeeInfoById, filterEmployeesByPosition, filterEmployeesBySkill } from './selectors/EmployeeSelector';
-import  { addEmployee } from './actions/addEmployeeAction';
+
+
+import { getAllEmployeesSelector } from './selectors/GetEmployeesSelector';
+import { getEmployeeInfoSelector} from './selectors/GetEmployeeInfoSelector';
+import { employeesFilterSelector } from './selectors/FilterEmployeeSelectors';
+
 import { selectEmployee} from './actions/selectEmployeeAction';
+import { selectFilter } from './actions/selectFilterAction';
+
 import FilterPanel from './components/FilterPanel';
 import EmployeeList from './components/EmployeeList';
 import PersonalCard from './components/PersonalCard';
@@ -14,13 +20,13 @@ class App extends Component {
     this.props.switchEmployeeId(employee.id);
   };
 
-  onFilterEmployees = (filterId) => {
-    console.log('ON FILTER EMPLOYEES', filterId);
-    //this.props.filterEmployee
+  onFilterEmployees = (filterId, pattern) => {
+    this.props.switchFilter(filterId, pattern);
   };
 
   componentDidMount() {
-	}
+    //console.log(this.props.employees);
+  }
 
 	render() {
 		return (
@@ -42,13 +48,15 @@ class App extends Component {
 
 export default connect (
   state => ({
-		employees: getEmployees(state),
-		filtered: filterEmployeesBySkill(state)('c++'),//некорректен в работе этот фильтр
-		employeeInfo:	getEmployeeInfoById(state)(state.app.employeeId)
+    employees: employeesFilterSelector(state)(state.app.filterId, state.app.pattern),
+		employeeInfo:	getEmployeeInfoSelector(state)(state.app.employeeId)
 	}),
   dispatch => ({
 		switchEmployeeId: (employeeId) => {
 			dispatch(selectEmployee(employeeId));
-		}
+		},
+    switchFilter: (filterId, pattern) => {
+		  dispatch(selectFilter(filterId, pattern));
+    }
 	})
 )(App);

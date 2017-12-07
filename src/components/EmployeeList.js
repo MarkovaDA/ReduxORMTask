@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, List } from 'semantic-ui-react';
+import { Segment, List, Label } from 'semantic-ui-react';
 
 class EmployeeList extends Component {
 
@@ -14,6 +14,7 @@ class EmployeeList extends Component {
     return (
       <Segment className='list-employee'>
         <label>Список сотрудников</label>
+        <Label circular color='blue'>{this.props.employees.length}</Label>
         <List divided relaxed animated>
           { employees }
         </List>

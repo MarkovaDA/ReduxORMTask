@@ -9,7 +9,6 @@ class FilterPanel extends Component {
       filterId: value,
       filterText: this.state.options[value].text
     });
-
   };
 
   onPatternChange = (e) => {

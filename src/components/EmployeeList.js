@@ -13,8 +13,7 @@ class EmployeeList extends Component {
 
     return (
       <Segment className='list-employee'>
-        <label>Список сотрудников</label>
-        <Label circular color='blue'>{this.props.employees.length}</Label>
+        <h4>Список сотрудников <Label circular color='blue'>{this.props.employees.length}</Label></h4>
         <List divided relaxed animated>
           { employees }
         </List>

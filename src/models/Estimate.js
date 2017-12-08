@@ -12,10 +12,10 @@ Estimate.modelName = 'Estimate';
 Estimate.fields = {
   id: attr(),
   value: attr(),
-  description: attr()
+  title: attr()
 };
 
 /*Estimate.propTypes = {
   value: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };*/

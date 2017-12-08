@@ -8,26 +8,43 @@ import { Position} from './Position';
 //const ValidatingModel = propTypesMixin(Model);
 
 export class Employee extends Model {
-  //вариант редьюсера внутри класса модели
+
   static reducer(action, Employee, session) {
-    const { type } = action;
+    const { type, data } = action;
     switch (type) {
       case 'ADD_EMPLOYEE':
-        const employee = Employee.create({
-          surname: 'MARKOVA',
-          name: 'DARYA',
-        });
-        employee.positions.add(session.Position.at(3));
-        employee.positions.add(session.Position.at(4));
-        employee.skills.add(session.Skill.at(0));
-        employee.skills.add(session.Skill.at(3));
-        employee.skills.add(session.Skill.at(6));
-        employee.skills.add(session.Skill.at(9));
-        employee.skills.add(session.Skill.at(12));
+        //this.addNewOne(data, Employee, session);
+        session.Skill.getSkillByCategoryEstimate(6, 0);
         break;
     }
     //return session.state;
   };
+
+  /*
+  * surname
+  * name
+  * positions - ids выбранных должностей
+  * skills - [{estimateId, categoryId}]
+  * */
+  addNewOne(data, Employee, session) {
+    const {surname, name, positions, skills} = data;
+
+    const employee = Employee.create({
+      surname: surname,
+      name: name
+    });
+
+    positions.forEach((posIndex) => {
+      employee.positions.add(session.Position.at(posIndex));
+    });
+
+    skills.forEach((skill) => {
+      //skill.category, skill.estimate
+      //ищем skillId с такими параметрами
+      /*const skillId = 1;
+      employee.skills.add(session.Skill.at(skillId));*/
+    });
+  }
 }
 Employee.modelName = 'Employee';
 

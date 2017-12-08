@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-import { getAllEmployeesSelector } from './selectors/GetEmployeesSelector';
-import { getEmployeeInfoSelector} from './selectors/GetEmployeeInfoSelector';
+import { employeeInfoSelector} from './selectors/EmployeeInfoSelector';
 import { employeesFilterSelector } from './selectors/FilterEmployeeSelectors';
+import { listPositionSelector } from './selectors/ListPositionSelector';
+import { listCategorySelector } from './selectors/ListCategorySelector';
+import { listEstimateSelector } from './selectors/ListEstimateSelector';
 
 import { selectEmployee} from './actions/selectEmployeeAction';
 import { selectFilter } from './actions/selectFilterAction';
@@ -24,20 +25,22 @@ class App extends Component {
     this.props.switchFilter(filterId, pattern);
   };
 
-  componentDidMount() {
-    //console.log(this.props.employees);
-  }
+  onAddEmployee = (employeeData) => {
+  	console.log('APP ', employeeData);
+	};
 
 	render() {
 		return (
 			<div>
-				<FilterPanel notifyFilter = {this.onFilterEmployees} />
+				<FilterPanel notifyFilter={this.onFilterEmployees} />
 				<div className ='wrapper'>
 					<div className='body'>
-							<EmployeeList employees = {this.props.employees} onSelectEmployee = {this.onSelectEmployee}/>
+							<EmployeeList employees={this.props.employees} onSelectEmployee ={this.onSelectEmployee}/>
 							<div className='right-column'>
-								<PersonalCard employeeInfo = {this.props.employeeInfo}/>
-								<AddEmployee />
+								<PersonalCard employeeInfo={this.props.employeeInfo}/>
+								<AddEmployee positions={this.props.positions}
+														 categories={this.props.categories}
+														 estimates={this.props.estimates} onAddEmployee={this.onAddEmployee}/>
 							</div>
 					</div>
 				</div>
@@ -49,7 +52,10 @@ class App extends Component {
 export default connect (
   state => ({
     employees: employeesFilterSelector(state)(state.app.filterId, state.app.pattern),
-		employeeInfo:	getEmployeeInfoSelector(state)(state.app.employeeId)
+		employeeInfo:	employeeInfoSelector(state)(state.app.employeeId),
+		positions: listPositionSelector(state)(), //набор всех должностей в системе
+		categories: listCategorySelector(state)(), //набор скиллов в системе
+		estimates: listEstimateSelector(state)() //уровни знаний
 	}),
   dispatch => ({
 		switchEmployeeId: (employeeId) => {

@@ -28,7 +28,7 @@ class PersonalCard extends Component {
               {
                   employee.skills.map((skill, index) => {
                     const {category, estimate} = skill;
-                    return (<List.Item as='li' key={index}>{category.title} <span>({estimate.description})</span></List.Item>)
+                    return (<List.Item as='li' key={index}>{category.title} <span>({estimate.title})</span></List.Item>)
                   }
                 )
               }
@@ -42,7 +42,7 @@ class PersonalCard extends Component {
     const card = this.buildCard(this.props.employeeInfo);
     return(
       <Segment className='info-employee'>
-        <label>Личная карта сотрудника</label>
+        <h4>Личная карта сотрудника</h4>
         {card}
       </Segment>
     );

@@ -9,8 +9,8 @@ export const  bootstrapInitialState = (schema) => {
 
   const positions = [
     {title: 'HR-Менеджер'},
-    {title: 'Системный администратор'},
-    {title: 'Младший инженер-программист'},
+    {title: 'системный администратор'},
+    {title: 'младший инженер-программист'},
     {title: 'инженер-программист'},
     {title: 'старший инженер-программист'},
     {title: 'тестировщик'}
@@ -21,9 +21,9 @@ export const  bootstrapInitialState = (schema) => {
   });
 
   const estimates = [
-    {value: 3, description: 'удовлетворительно'},
-    {value: 4, description: 'хорошо'},
-    {value: 5, description: 'отлично'}
+    {value: 3, title: 'удовлетворительно'},
+    {value: 4, title: 'хорошо'},
+    {value: 5, title: 'отлично'}
   ];
 
   estimates.forEach((item) => {

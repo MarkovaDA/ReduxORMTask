@@ -1,7 +1,6 @@
 import { schema } from './../schema/Schema';
 import { createSelector } from 'redux-orm';
 
-
 export  const getAllEmployeesSelector = createSelector(schema, state => state.orm, session => {
   return () => {
     const employees = session.Employee.all().toModelArray().map((employee) => {

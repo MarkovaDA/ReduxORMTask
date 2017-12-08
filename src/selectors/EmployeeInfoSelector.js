@@ -26,7 +26,7 @@ import  * as isUndefined from 'lodash.isundefined';
 *     estimate: {
 *       id:...,
 *       value: ...,
-*       description: ...
+*       title: ...
 *     }
 *   },
 *   {
@@ -36,7 +36,7 @@ import  * as isUndefined from 'lodash.isundefined';
 * ]
 *
 * */
-export const getEmployeeInfoSelector = createSelector(schema, state => state.orm, session => {
+export const employeeInfoSelector = createSelector(schema, state => state.orm, session => {
   return (employeeId) => {
     if (isUndefined(employeeId)) {
       return undefined;
